@@ -1,0 +1,34 @@
+.product-form-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.error-message {
+    color: #f44336;
+    padding: 12px;
+    background: #ffebee;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.actions button {
+    min-width: 100px;
+}

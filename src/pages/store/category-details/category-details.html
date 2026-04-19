@@ -1,0 +1,36 @@
+<div class="category-details-container">
+    <button mat-button (click)="goBack()" class="back-button">← Back</button>
+
+    <div *ngIf="category()" class="category-header">
+        <h1>{{ category()!.name }}</h1>
+        <p>{{ category()!.description }}</p>
+    </div>
+
+    <div *ngIf="isLoading()" class="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!isLoading() && errorMessage()" class="error-message">
+        {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="!isLoading() && products().length > 0" class="products-grid">
+        <mat-card *ngFor="let product of products()" class="product-card">
+            <img [src]="product.images?.length ? product.images[0].imageUrl : 'assets/placeholder.png'" [alt]="product.name" class="product-image">
+            <mat-card-header>
+                <mat-card-title>{{ product.name }}</mat-card-title>
+                <mat-card-subtitle>${{ product.price }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ product.description | slice:0:100 }}...</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="viewProduct(product.id)">View</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div *ngIf="!isLoading() && products().length === 0" class="no-products">
+        <p>No products in this category</p>
+    </div>
+</div>

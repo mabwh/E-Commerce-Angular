@@ -1,0 +1,5 @@
+<div class="rating">
+    <span *ngFor="let star of stars" [class.filled]="isFilledStar(star)" [class.half]="isHalfStar(star)"
+        class="star">★</span>
+    <span class="rating-text">{{ rating }}/{{ maxRating }}</span>
+</div>

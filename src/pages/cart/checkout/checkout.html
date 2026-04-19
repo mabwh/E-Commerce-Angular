@@ -1,0 +1,90 @@
+<div class="checkout-container">
+    <h1>Checkout</h1>
+
+    <div *ngIf="isLoadingCart()" class="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!isLoadingCart() && errorMessage()" class="error-message">
+        {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="!isLoadingCart()" class="checkout-content">
+        <div class="checkout-form-section">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Shipping Information</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Full Name</mat-label>
+                            <input matInput formControlName="fullName">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" type="email">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput formControlName="phoneNumber">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>City</mat-label>
+                            <input matInput formControlName="city">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput formControlName="postalCode">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Payment Method</mat-label>
+                            <select matNativeControl formControlName="paymentMethod">
+                                <option value="CreditCard">Credit Card</option>
+                                <option value="DebitCard">Debit Card</option>
+                                <option value="PayPal">PayPal</option>
+                            </select>
+                        </mat-form-field>
+
+                        <div class="form-actions">
+                            <button mat-button (click)="goBack()">Cancel</button>
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="checkoutForm.invalid || isLoading()">
+                                <span *ngIf="!isLoading()">Place Order</span>
+                                <span *ngIf="isLoading()">Processing...</span>
+                            </button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="order-summary-section">
+            <mat-card *ngIf="cart()">
+                <mat-card-header>
+                    <mat-card-title>Order Summary</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let item of cart()!.items" class="summary-item">
+                        <span>{{ item.productName }} x{{ item.quantity }}</span>
+                        <span>${{ item.lineTotal }}</span>
+                    </div>
+                    <div class="summary-total">
+                        <strong>Total:</strong>
+                        <strong>${{ cart()!.total }}</strong>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.home-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+}
+
+.error-message {
+    color: #f44336;
+    padding: 12px;
+    background: #ffebee;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.product-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+mat-card-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.no-products {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 10px;
+}

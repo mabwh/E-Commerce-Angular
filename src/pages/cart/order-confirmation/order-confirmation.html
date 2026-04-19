@@ -1,0 +1,17 @@
+<mat-card class="confirmation-container">
+    <mat-card-header>
+        <mat-card-title>Order Confirmation</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="success-message">
+            <h2>Thank You for Your Order!</h2>
+            <p>Your order has been placed successfully.</p>
+            <p>You will receive an email confirmation shortly.</p>
+        </div>
+
+        <div class="actions">
+            <button mat-raised-button color="primary" (click)="continueShopping()">Continue Shopping</button>
+            <button mat-raised-button color="accent" (click)="viewOrders()">View My Orders</button>
+        </div>
+    </mat-card-content>
+</mat-card>

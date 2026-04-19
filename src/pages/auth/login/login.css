@@ -1,0 +1,32 @@
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.error-message {
+    color: #f44336;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #ffebee;
+    border-radius: 4px;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.text-center a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+<div class="product-details-container" *ngIf="!isLoading(); else loading">
+    <button mat-button (click)="goBack()" class="back-button">← Back</button>
+
+    <div *ngIf="errorMessage()" class="error-message">
+        {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="product()" class="product-content">
+        <div class="product-image">
+            <img [src]="product()!.images?.length ? product()!.images[0].imageUrl : 'assets/placeholder.png'" [alt]="product()!.name">
+        </div>
+
+        <div class="product-info">
+            <h1>{{ product()!.name }}</h1>
+            <p class="price">${{ product()!.price }}</p>
+            <p class="description">{{ product()!.description }}</p>
+
+            <div class="quantity-section">
+                <label>Quantity:</label>
+                <input type="number" [value]="quantity()" (change)="quantity.set($any($event.target).value)" min="1">
+            </div>
+
+            <div class="actions">
+                <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
+            </div>
+
+            <div class="details">
+                <p><strong>Stock:</strong> {{ product()!.stockQuantity }}</p>
+                <p><strong>Category ID:</strong> {{ product()!.categoryId }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="product()" class="reviews-section">
+        <h2>Customer Reviews</h2>
+
+        <div class="review-form">
+            <h3>Add Your Review</h3>
+            <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Rating</mat-label>
+                    <input matInput type="number" formControlName="rating" min="1" max="5">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Comment</mat-label>
+                    <textarea matInput formControlName="comment" rows="4"></textarea>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

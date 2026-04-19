@@ -1,0 +1,26 @@
+.confirm-email-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-message {
+    color: #f44336;
+    padding: 12px;
+    background: #ffebee;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.success-message {
+    color: #388e3c;
+    padding: 12px;
+    background: #e8f5e9;
+    border-radius: 4px;
+    text-align: center;
+}

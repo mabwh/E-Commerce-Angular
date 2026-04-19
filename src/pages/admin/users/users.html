@@ -1,0 +1,38 @@
+<div class="users-container">
+    <h1>Manage Users</h1>
+
+    <div *ngIf="isLoading()" class="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!isLoading() && errorMessage()" class="error-message">
+        {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="!isLoading() && users().length > 0" class="users-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users()">
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>
+                        <button mat-button color="warn" (click)="deactivateUser(user.id)">Deactivate</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!isLoading() && users().length === 0" class="no-users">
+        <p>No users found</p>
+    </div>
+</div>

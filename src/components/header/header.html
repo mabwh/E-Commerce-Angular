@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="header">
+    <h1 routerLink="/" class="logo">E-Commerce Store</h1>
+
+    <div class="spacer"></div>
+
+    <nav class="nav-links">
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a mat-button routerLink="/categories" routerLinkActive="active">Categories</a>
+        <a mat-button routerLink="/cart" routerLinkActive="active">Cart</a>
+
+        <div *ngIf="!isLoggedIn()">
+            <a mat-button routerLink="/auth/login" routerLinkActive="active">Login</a>
+            <a mat-button color="accent" routerLink="/auth/register" routerLinkActive="active">Register</a>
+        </div>
+
+        <div *ngIf="isLoggedIn()" [matMenuTriggerFor]="userMenu" mat-button>
+            Account ▼
+        </div>
+
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item routerLink="/user/profile">My Profile</button>
+            <button mat-menu-item routerLink="/user/orders">My Orders</button>
+            <button mat-menu-item routerLink="/user/wishlist">Wishlist</button>
+            <mat-divider *ngIf="isSeller()"></mat-divider>
+            <button mat-menu-item *ngIf="isSeller()" routerLink="/seller/dashboard">Seller Dashboard</button>
+            <mat-divider *ngIf="isAdmin()"></mat-divider>
+            <button mat-menu-item *ngIf="isAdmin()" routerLink="/admin/dashboard">Admin Dashboard</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+    </nav>
+</mat-toolbar>

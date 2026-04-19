@@ -1,0 +1,42 @@
+<div class="admin-dashboard">
+    <h1>Admin Dashboard</h1>
+
+    <div class="dashboard-cards">
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+                <mat-card-title>Manage Users</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>View and manage all users in the system</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="navigateTo('/admin/users')">Go to Users</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+                <mat-card-title>Manage Orders</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>View and manage all orders</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="navigateTo('/admin/orders')">Go to Orders</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+                <mat-card-title>Manage Products</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>View and manage all products</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="navigateTo('/admin/products')">Go to
+                    Products</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
