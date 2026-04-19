@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { PlaceOrderDto } from '../models/place-order-dto';
 import { OrderDto } from '../models/order-dto';
+import { UserOrderDto } from '../models/user-order-dto';
 import { PagedRequestDto } from '../models/paged-request-dto';
 import { PagedResponseDto } from '../models/paged-response-dto';
 
@@ -33,6 +34,10 @@ export class OrdersService {
 
   getOrders(request: PagedRequestDto): Observable<PagedResponseDto<OrderDto>> {
     return this.http.get<PagedResponseDto<OrderDto>>(this.apiUrl, { params: this.buildParams(request) });
+  }
+
+  getUserOrders(): Observable<UserOrderDto[]> {
+    return this.http.get<UserOrderDto[]>(`${this.apiUrl}/my-orders`);
   }
 
   getOrderById(id: number): Observable<OrderDto> {
