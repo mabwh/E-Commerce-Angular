@@ -43,7 +43,7 @@ export class Dashboard implements OnInit {
 
         this.sellerProductsService.getProducts(request).subscribe({
             next: (response) => {
-                this.products.set(response.data);
+                this.products.set(response.items);
                 this.isLoading.set(false);
             },
             error: (err) => {

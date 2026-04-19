@@ -43,7 +43,7 @@ export class Categories implements OnInit {
 
         this.categoriesService.getCategories(request).subscribe({
             next: (response) => {
-                this.categories.set(response.data);
+                this.categories.set(response.items);
                 this.isLoading.set(false);
             },
             error: (err) => {

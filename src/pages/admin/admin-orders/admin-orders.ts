@@ -38,7 +38,7 @@ export class AdminOrders implements OnInit {
         };
         this.adminOrdersService.getOrders(request).subscribe({
             next: (response) => {
-                this.orders.set(response.data);
+                this.orders.set(response.items);
                 this.isLoading.set(false);
             },
             error: (err) => {

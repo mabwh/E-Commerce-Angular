@@ -42,7 +42,7 @@ export class AdminProducts implements OnInit {
         };
         this.productsService.getProducts(request).subscribe({
             next: (response) => {
-                this.products.set(response.data);
+                this.products.set(response.items);
                 this.isLoading.set(false);
             },
             error: (err) => {

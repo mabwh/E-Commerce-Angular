@@ -44,7 +44,7 @@ export class CategoryFilter implements OnInit {
 
         this.categoriesService.getCategories(request).subscribe({
             next: (response) => {
-                this.categories = response.data;
+                this.categories = response.items;
             },
             error: (err) => {
                 console.error('Failed to load categories');
