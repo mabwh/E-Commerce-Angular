@@ -10,7 +10,7 @@ import { OrderDto } from '../models/order-dto';
   providedIn: 'root'
 })
 export class AdminOrdersService {
-  private apiUrl = `${environment.apiUrl}/api/admin/orders`;
+  private apiUrl = `${environment.apiUrl}admin/orders`;
 
   constructor(private http: HttpClient) {}
 

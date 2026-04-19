@@ -9,7 +9,7 @@ import { UpdateProductDto } from '../models/update-product-dto';
   providedIn: 'root'
 })
 export class AdminProductsService {
-  private apiUrl = `${environment.apiUrl}/api/admin/products`;
+  private apiUrl = `${environment.apiUrl}admin/products`;
 
   constructor(private http: HttpClient) {}
 

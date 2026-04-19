@@ -9,7 +9,7 @@ import { ReviewDto } from '../models/review-dto';
   providedIn: 'root'
 })
 export class ReviewsService {
-  private apiUrl = `${environment.apiUrl}/api/reviews`;
+  private apiUrl = `${environment.apiUrl}reviews`;
 
   constructor(private http: HttpClient) {}
 

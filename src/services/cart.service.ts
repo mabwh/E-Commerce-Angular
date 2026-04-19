@@ -11,7 +11,7 @@ import { CheckoutSummaryDto } from '../models/checkout-summary-dto';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = `${environment.apiUrl}/api/cart`;
+  private apiUrl = `${environment.apiUrl}Cart`;
 
   constructor(private http: HttpClient) {}
 

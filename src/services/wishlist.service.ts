@@ -8,7 +8,7 @@ import { WishlistDto } from '../models/wishlist-dto';
   providedIn: 'root'
 })
 export class WishlistService {
-  private apiUrl = `${environment.apiUrl}/api/wishlist`;
+  private apiUrl = `${environment.apiUrl}wishlist`;
 
   constructor(private http: HttpClient) {}
 

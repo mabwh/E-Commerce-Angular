@@ -13,7 +13,7 @@ import { ResetPasswordDto } from '../models/reset-password-dto';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/api/auth`;
+  private apiUrl = `${environment.apiUrl}Auth`;
 
   constructor(private http: HttpClient) {}
 

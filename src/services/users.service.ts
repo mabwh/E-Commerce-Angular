@@ -8,7 +8,7 @@ import { UpdateUserProfileDto } from '../models/update-user-profile-dto';
   providedIn: 'root'
 })
 export class UsersService {
-  private apiUrl = `${environment.apiUrl}/api/users`;
+  private apiUrl = `${environment.apiUrl}users`;
 
   constructor(private http: HttpClient) {}
 

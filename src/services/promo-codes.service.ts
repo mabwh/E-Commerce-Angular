@@ -12,7 +12,7 @@ import { UpdatePromoCodeDto } from '../models/update-promo-code-dto';
   providedIn: 'root'
 })
 export class PromoCodesService {
-  private apiUrl = `${environment.apiUrl}/api/admin/promocodes`;
+  private apiUrl = `${environment.apiUrl}admin/PromoCodes`;
 
   constructor(private http: HttpClient) {}
 

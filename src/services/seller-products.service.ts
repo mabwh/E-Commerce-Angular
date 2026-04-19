@@ -12,7 +12,7 @@ import { UpdateProductDto } from '../models/update-product-dto';
   providedIn: 'root'
 })
 export class SellerProductsService {
-  private apiUrl = `${environment.apiUrl}/api/seller/products`;
+  private apiUrl = `${environment.apiUrl}seller/products`;
 
   constructor(private http: HttpClient) {}
 

@@ -13,7 +13,7 @@ import { ProductDto } from '../models/product-dto';
   providedIn: 'root'
 })
 export class CategoriesService {
-  private apiUrl = `${environment.apiUrl}/api/categories`;
+  private apiUrl = `${environment.apiUrl}Categories`;
 
   constructor(private http: HttpClient) {}
 

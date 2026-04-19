@@ -12,7 +12,7 @@ import { PagedResponseDto } from '../models/paged-response-dto';
   providedIn: 'root'
 })
 export class OrdersService {
-  private apiUrl = `${environment.apiUrl}/api/orders`;
+  private apiUrl = `${environment.apiUrl}Orders`;
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class OrdersService {
   }
 
   getUserOrders(): Observable<UserOrderDto[]> {
-    return this.http.get<UserOrderDto[]>(`${this.apiUrl}/my-orders`);
+    return this.http.get<UserOrderDto[]>(`${environment.apiUrl}users/orders`);
   }
 
   getOrderById(id: number): Observable<OrderDto> {
