@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../../services/auth.service';
+import { AuthStateService } from '../../../services/auth-state.service';
 
 @Component({
     selector: 'app-login',
@@ -27,13 +28,17 @@ export class Login {
     loginForm!: FormGroup;
     isLoading = signal(false);
     errorMessage = signal('');
+    private returnUrl = '/';
 
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
-        private router: Router
+        private authState: AuthStateService,
+        private router: Router,
+        private route: ActivatedRoute
     ) {
         this.initForm();
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     initForm() {
@@ -51,10 +56,9 @@ export class Login {
 
         this.authService.login(this.loginForm.value).subscribe({
             next: (response) => {
-                localStorage.setItem('token', response.token || '');
-                localStorage.setItem('roles', JSON.stringify(response.roles));
-                this.router.navigate(['/']);
+                this.authState.setAuthenticated(response.token || '', response.roles, response.refreshToken);
                 this.isLoading.set(false);
+                this.router.navigateByUrl(this.returnUrl);
             },
             error: (err) => {
                 this.errorMessage.set(err.error?.message || 'Login failed');

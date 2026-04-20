@@ -36,8 +36,8 @@ export class OrdersService {
     return this.http.get<PagedResponseDto<OrderDto>>(this.apiUrl, { params: this.buildParams(request) });
   }
 
-  getUserOrders(): Observable<UserOrderDto[]> {
-    return this.http.get<UserOrderDto[]>(`${environment.apiUrl}users/orders`);
+  getUserOrders(): Observable<PagedResponseDto<UserOrderDto>> {
+    return this.http.get<PagedResponseDto<UserOrderDto>>(`${environment.apiUrl}users/orders`);
   }
 
   getOrderById(id: number): Observable<OrderDto> {

@@ -56,7 +56,7 @@ export const routes: Routes = [
     { path: 'categories/:id', component: CategoryDetails },
 
     // 4. Cart Flow
-    { path: 'cart', component: CartView },
+    { path: 'cart', canActivate: [authGuard], component: CartView },
     { path: 'checkout', canActivate: [authGuard], component: Checkout },
     { path: 'cart/order-confirmation', canActivate: [authGuard], component: OrderConfirmation },
 
