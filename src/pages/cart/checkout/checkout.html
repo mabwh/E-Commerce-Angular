@@ -50,9 +50,10 @@
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Payment Method</mat-label>
                             <select matNativeControl formControlName="paymentMethod">
-                                <option value="CreditCard">Credit Card</option>
-                                <option value="DebitCard">Debit Card</option>
-                                <option value="PayPal">PayPal</option>
+                                <option [ngValue]="PaymentMethod.CreditCard">Credit Card</option>
+                                <option [ngValue]="PaymentMethod.PayPal">PayPal</option>
+                                <option [ngValue]="PaymentMethod.COD">Cash on Delivery</option>
+                                <option [ngValue]="PaymentMethod.Wallet">Wallet</option>
                             </select>
                         </mat-form-field>
 

@@ -10,6 +10,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CartDto } from '../../../models/cart-dto';
 import { OrdersService } from '../../../services/orders.service';
 import { CartService } from '../../../services/cart.service';
+import { PaymentMethod } from '../../../models/payment-method';
+import { PlaceOrderDto } from '../../../models/place-order-dto';
 
 @Component({
     selector: 'app-checkout',
@@ -33,6 +35,9 @@ export class Checkout implements OnInit {
     isLoadingCart = signal(true);
     errorMessage = signal('');
 
+    // Expose enum to template
+    PaymentMethod = PaymentMethod;
+
     constructor(
         private fb: FormBuilder,
         private ordersService: OrdersService,
@@ -50,7 +55,7 @@ export class Checkout implements OnInit {
             address: ['', [Validators.required]],
             city: ['', [Validators.required]],
             postalCode: ['', [Validators.required]],
-            paymentMethod: ['CreditCard', [Validators.required]]
+            paymentMethod: [PaymentMethod.CreditCard, [Validators.required]]
         });
     }
 
@@ -77,9 +82,12 @@ export class Checkout implements OnInit {
         this.isLoading.set(true);
         this.errorMessage.set('');
 
-        const orderData = {
-            ...this.checkoutForm.value,
-            items: this.cart()!.items
+        const formValue = this.checkoutForm.value;
+
+        // Build the PlaceOrderDto matching the backend schema
+        const orderData: PlaceOrderDto = {
+            shippingAddress: `${formValue.fullName}, ${formValue.address}, ${formValue.city} ${formValue.postalCode}, Phone: ${formValue.phoneNumber}`,
+            paymentMethod: formValue.paymentMethod
         };
 
         this.ordersService.placeOrder(orderData).subscribe({
@@ -88,7 +96,7 @@ export class Checkout implements OnInit {
                 this.isLoading.set(false);
             },
             error: (err) => {
-                this.errorMessage.set(err.error?.message || 'Order failed');
+                this.errorMessage.set(err.error?.message || err.error?.title || 'Order failed');
                 this.isLoading.set(false);
             }
         });
@@ -98,3 +106,4 @@ export class Checkout implements OnInit {
         this.router.navigate(['/cart']);
     }
 }
+
