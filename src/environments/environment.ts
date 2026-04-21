@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:55758/api/' // Placeholder for the actual API base URL
+  apiUrl: 'http://ecommerce-angular.runasp.net/api/' // Placeholder for the actual API base URL
 };
