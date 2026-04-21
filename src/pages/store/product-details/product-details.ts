@@ -11,6 +11,7 @@ import { ProductDto } from '../../../models/product-dto';
 import { ProductsService } from '../../../services/products.service';
 import { ReviewsService } from '../../../services/reviews.service';
 import { CartService } from '../../../services/cart.service';
+import { AuthStateService } from '../../../services/auth-state.service';
 
 @Component({
     selector: 'app-product-details',
@@ -38,6 +39,7 @@ export class ProductDetails implements OnInit {
         private productsService: ProductsService,
         private reviewsService: ReviewsService,
         private cartService: CartService,
+        private authState: AuthStateService,
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private router: Router
@@ -74,6 +76,13 @@ export class ProductDetails implements OnInit {
     }
 
     addToCart() {
+        if (!this.authState.isLoggedIn) {
+            this.router.navigate(['/auth/login'], {
+                queryParams: { returnUrl: this.router.url }
+            });
+            return;
+        }
+
         if (this.product()) {
             this.cartService.addToCart({
                 productId: this.product()!.id,
@@ -90,6 +99,13 @@ export class ProductDetails implements OnInit {
     }
 
     addReview() {
+        if (!this.authState.isLoggedIn) {
+            this.router.navigate(['/auth/login'], {
+                queryParams: { returnUrl: this.router.url }
+            });
+            return;
+        }
+
         if (this.reviewForm.valid && this.product()) {
             this.reviewsService.createReview({
                 productId: this.product()!.id,
@@ -110,3 +126,4 @@ export class ProductDetails implements OnInit {
         this.router.navigate(['/']);
     }
 }
+

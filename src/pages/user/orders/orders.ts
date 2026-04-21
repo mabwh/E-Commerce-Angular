@@ -37,7 +37,7 @@ export class Orders implements OnInit {
         this.isLoading.set(true);
         this.ordersService.getUserOrders().subscribe({
             next: (response) => {
-                this.orders.set(response);
+                this.orders.set(response.items);
                 this.isLoading.set(false);
             },
             error: (err) => {

@@ -13,9 +13,9 @@
             <a mat-button color="accent" routerLink="/auth/register" routerLinkActive="active">Register</a>
         </div>
 
-        <div *ngIf="isLoggedIn()" [matMenuTriggerFor]="userMenu" mat-button>
+        <button *ngIf="isLoggedIn()" mat-button [matMenuTriggerFor]="userMenu">
             Account ▼
-        </div>
+        </button>
 
         <mat-menu #userMenu="matMenu">
             <button mat-menu-item routerLink="/user/profile">My Profile</button>

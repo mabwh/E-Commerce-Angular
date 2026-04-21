@@ -9,6 +9,7 @@ import { PagedRequestDto } from '../../../models/paged-request-dto';
 import { ProductDto } from '../../../models/product-dto';
 import { ProductsService } from '../../../services/products.service';
 import { CartService } from '../../../services/cart.service';
+import { AuthStateService } from '../../../services/auth-state.service';
 
 @Component({
     selector: 'app-home',
@@ -33,6 +34,7 @@ export class Home implements OnInit {
     constructor(
         private productsService: ProductsService,
         private cartService: CartService,
+        private authState: AuthStateService,
         private router: Router
     ) { }
 
@@ -64,6 +66,13 @@ export class Home implements OnInit {
     }
 
     addToCart(productId: number) {
+        if (!this.authState.isLoggedIn) {
+            this.router.navigate(['/auth/login'], {
+                queryParams: { returnUrl: this.router.url }
+            });
+            return;
+        }
+
         this.cartService.addToCart({ productId, quantity: 1 }).subscribe({
             next: () => {
                 alert('Added to cart');
